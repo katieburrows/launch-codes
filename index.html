@@ -16,7 +16,7 @@
 		<div class="jumbotron">
 			<h1 class="display-3">Employee Data Management</h1>
 			
-			<p class="lead">An app that calculates employee's billable hours</p>
+			<p class="lead">An app that calculates employees billable hours</p>
 			
 			<hr class="my-4">
 		</div>
@@ -47,12 +47,28 @@
 						<input type="number" class="form-control" id="monthlyRate" aria-describedby="monthlyRate" placeholder="2000">
 
 					</div>
-				  <button type="submit" class="btn btn-primary" id = "submitBtn">Submit</button>
-				</fieldset>
-			  </form>
+				<button type="submit" class="btn btn-primary" id = "submitBtn">Submit</button>
+			</fieldset>
+		</form>
 
 
-
+		<div id="employeeTable">
+			<table id="employeeInfo" class="table-primary table table-hover">
+				<thead>
+					<tr>
+						<th id = "empName">Employee Name </th>
+						<th id = "empRole">Role </th>
+						<th id = "empStartDate">Start Date </th>
+						<th id = "empMonthsWorked">Months Worked </th>
+						<th id = "empMonthlyRate">Monthly Rate ($) </th>
+						<th id = "empTotalBilled">Total Billed ($) </th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+		
+		
 
 
 
