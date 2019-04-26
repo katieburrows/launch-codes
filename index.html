@@ -6,22 +6,56 @@
 		<title>Employee Tracker</title>
 
 		<!-- bootstrap link -->
-		<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/journal/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-8nq3OiMMgrVFAHyRMMO+DTfMEciSY+c3Awhj/5ljQ1xck1Uv2BUtMjsjLD8GT5Er" crossorigin="anonymous">
+		<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/journal/bootstrap.min.css" rel="stylesheet" integrity="sha384-ciphE0NCAlD2/N6NUApXAN2dAs/vcSAOTzyE202jJx3oS8n4tAQezRgnlHqcJ59C" crossorigin="anonymous">
 		
 		<!-- my stylesheet link -->
 		<link rel="stylesheet" type="text/css" href="assets/style.css" />
 	</head>
 
 	<body>
+		<div class="jumbotron">
+			<h1 class="display-3">Employee Data Management</h1>
+			
+			<p class="lead">An app that calculates employee's billable hours</p>
+			
+			<hr class="my-4">
+		</div>
+
+		<form>
+			<fieldset>
+				<legend>Add Employee</legend>
+
+					<div class="form-group">
+						<label for="employeeName">Employee Name</label>
+						<input type="text" class="form-control" id="employeeName" aria-describedby="name" placeholder="Suzy Worker">
+				  	</div>
+				  
+				  	<div class="form-group">
+						<label for="role">Role</label>
+						<input type="text" class="form-control" id="role" aria-describedby="role" placeholder="Technician">
+
+					</div>
+
+					<div class="form-group">
+						<label for="startDate">Start Date (MM/DD/YYYY)</label>
+						<input type="date" class="form-control" id="date" aria-describedby="date" placeholder="09/01/2018">
+
+					</div>
+
+					<div class="form-group">
+						<label for="monthlyRate">Monthy Rate</label>
+						<input type="number" class="form-control" id="monthlyRate" aria-describedby="monthlyRate" placeholder="2000">
+
+					</div>
+				  <button type="submit" class="btn btn-primary" id = "submitBtn">Submit</button>
+				</fieldset>
+			  </form>
 
 
 
 
 
 
-
-		<h1>hiiiii</h1>
 
 
 		<!-- jQuery link -->
