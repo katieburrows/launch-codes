@@ -12,24 +12,36 @@ $(document).ready(function () {
   
     firebase.initializeApp(config);
 
+    var database = firebase.database();
+
+    var employeeName = "";
+    var role = "";
+    var startDate = "";
+    var monthlyRate = "";
 
     $("#submitBtn").on("click", function(event){
         event.preventDefault();
-        var employeeName = $("#employeeName").val().trim();
-        var role = $("#role").val().trim();
+        employeeName = $("#employeeName").val().trim();
+        role = $("#role").val().trim();
         // var startDate = $("#startDate").val().trim();
-        var monthlyRate = $("#monthlyRate").val().trim();
+        monthlyRate = $("#monthlyRate").val().trim();
     
         $("#employeeName").val("");
         $("#role").val("");
         $("#startDate").val("");
         $("#monthlyRate").val("");
 
+        database.ref().push({
+            name: employeeName,
+            role: role,
+            startDate: startDate,
+            monthlyRate: monthlyRate
+        });
 
         // $("#employeeInfo > tbody").append("<tr><td>" + employeeName + "</td><td>" +  role + "</td><td>" +
         // empStartPretty + "</td><td>" + empMonths + "</td><td>" + monthlyRate + "</td><td>" + empBilled + "</td></tr>");
 
-        //at phase 2--push part.  look at file: 18-Push for reference
+
     });
 
 
