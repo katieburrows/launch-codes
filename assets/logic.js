@@ -16,30 +16,30 @@ $(document).ready(function () {
 
     var employeeName = "";
     var role = "";
-    var startDate = "";
+    var date = "";
     var monthlyRate = "";
 
     $("#submitBtn").on("click", function(event){
         event.preventDefault();
         employeeName = $("#employeeName").val().trim();
         role = $("#role").val().trim();
-        var startDate = $("#startDate").val().trim();
+        var startDate = moment($("#date").val().trim(), "DD/MM/YY").format("X");
         monthlyRate = $("#monthlyRate").val().trim();
     
         $("#employeeName").val("");
         $("#role").val("");
-        $("#startDate").val("");
+        $("#date").val("");
         $("#monthlyRate").val("");
 
         database.ref().push({
             name: employeeName,
             role: role,
-            // startDate: startDate,
+            startDate: startDate,
             monthlyRate: monthlyRate,
-            // dateAdded: firebase.database.ServerValue.TIMESTAMP
         });
+    });
 
-        database.ref().on("child_added", function(childSnapshot){
+    database.ref().on("child_added", function(childSnapshot){
         $("#employeeInfo").append("<tr><td>" + childSnapshot.val().name + "</td><td>" +  childSnapshot.val().role + "</td><td>" + childSnapshot.val().monthlyRate + "</td></tr>"); 
         // + empStartPretty + "</td><td>" + empMonths + "</td><td>" + monthlyRate + "</td><td>" + empBilled + "</td></tr>");
 
@@ -47,12 +47,6 @@ $(document).ready(function () {
         }, function(errorObject){
             console.log("Errors handled: " + errorObject.code);
         });
-
-
-
-
-    });
-
 
 
 
