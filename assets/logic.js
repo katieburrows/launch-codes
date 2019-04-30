@@ -1,7 +1,16 @@
 $(document).ready(function () {
 
     // Initialize Firebase
-
+    var config = {
+        apiKey: "AIzaSyB_64GfN1BfeNiHdgHwiP55xvCwG_kAQTI",
+        authDomain: "project-1-4ebab.firebaseapp.com",
+        databaseURL: "https://project-1-4ebab.firebaseio.com",
+        projectId: "project-1-4ebab",
+        storageBucket: "project-1-4ebab.appspot.com",
+        messagingSenderId: "803889008587"
+    };
+  
+    firebase.initializeApp(config);
 
     var database = firebase.database();
 
@@ -14,7 +23,7 @@ $(document).ready(function () {
         event.preventDefault();
         employeeName = $("#employeeName").val().trim();
         role = $("#role").val().trim();
-        // var startDate = $("#startDate").val().trim();
+        var startDate = $("#startDate").val().trim();
         monthlyRate = $("#monthlyRate").val().trim();
     
         $("#employeeName").val("");
