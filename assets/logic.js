@@ -14,17 +14,12 @@ $(document).ready(function () {
 
     var database = firebase.database();
 
-    var employeeName = "";
-    var role = "";
-    var date = "";
-    var monthlyRate = "";
-
     $("#submitBtn").on("click", function(event){
         event.preventDefault();
-        employeeName = $("#employeeName").val().trim();
-        role = $("#role").val().trim();
-        var startDate = moment($("#date").val().trim(), "DD/MM/YY").format("X");
-        monthlyRate = $("#monthlyRate").val().trim();
+        var employeeName = $("#employeeName").val().trim();
+        var role = $("#role").val().trim();
+        var date = moment($("#date").val().trim(), "DD/MM/YYYY").format("X");
+        var monthlyRate = $("#monthlyRate").val().trim();
     
         $("#employeeName").val("");
         $("#role").val("");
@@ -34,33 +29,23 @@ $(document).ready(function () {
         database.ref().push({
             name: employeeName,
             role: role,
-            startDate: startDate,
+            date: date,
             monthlyRate: monthlyRate,
         });
     });
 
     database.ref().on("child_added", function(childSnapshot){
-        $("#employeeInfo").append("<tr><td>" + childSnapshot.val().name + "</td><td>" +  childSnapshot.val().role + "</td><td>" + childSnapshot.val().monthlyRate + "</td></tr>"); 
-        // + empStartPretty + "</td><td>" + empMonths + "</td><td>" + monthlyRate + "</td><td>" + empBilled + "</td></tr>");
+        var employeeName = childSnapshot.val().name;
+        var role = childSnapshot.val().role;
+        var date = childSnapshot.val().date;
+        var monthlyRate = childSnapshot.val().monthlyRate;
+        var employeeStart = moment.unix(date).format("MM/DD/YY");
+        var employeeMonths = moment().diff(moment.unix(employeeStart, "X"), "months");
+        var empBilled = employeeMonths * monthlyRate;
 
-
+        $("#employeeInfo").append("<tr><td>" + employeeName + "</td><td>" + role + "</td><td>" + date + "</td><td>" + employeeMonths + "</td><td>" + monthlyRate + "</td><td>" + empBilled + "</td></tr>");
         }, function(errorObject){
             console.log("Errors handled: " + errorObject.code);
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 });
