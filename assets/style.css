@@ -12,8 +12,14 @@ body {
 .jumbotron {
     text-align: center;
 }
-
 #submitBtn {
     margin-bottom: 20px;
     background-color: #5b6F55
+}
+footer {
+    width: 126%;
+    margin: 10% 0% -10% -13%;
+    background-color: #e6e6e6;
+    text-align: center;
+    padding: 29px 0px;
 }
