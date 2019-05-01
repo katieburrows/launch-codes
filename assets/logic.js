@@ -16,20 +16,21 @@ $(document).ready(function () {
 
     $("#submitBtn").on("click", function(event){
         event.preventDefault();
+
         var employeeName = $("#employeeName").val().trim();
         var role = $("#role").val().trim();
-        var date = moment($("#date").val().trim(), "DD/MM/YYYY").format("X");
+        var startDate = moment($("#startDate").val().trim(), "MM/DD/YYYY").format("X");
         var monthlyRate = $("#monthlyRate").val().trim();
-    
+        
         $("#employeeName").val("");
         $("#role").val("");
-        $("#date").val("");
+        $("#startDate").val("");
         $("#monthlyRate").val("");
 
         database.ref().push({
             name: employeeName,
             role: role,
-            date: date,
+            date: startDate,
             monthlyRate: monthlyRate,
         });
     });
@@ -37,13 +38,16 @@ $(document).ready(function () {
     database.ref().on("child_added", function(childSnapshot){
         var employeeName = childSnapshot.val().name;
         var role = childSnapshot.val().role;
-        var date = childSnapshot.val().date;
+        var startDate = childSnapshot.val().date;
         var monthlyRate = childSnapshot.val().monthlyRate;
-        var employeeStart = moment.unix(date).format("MM/DD/YY");
-        var employeeMonths = moment().diff(moment.unix(employeeStart, "X"), "months");
+        
+        //telling moment that this isn't an ordinary date, but actually a unix timestamp
+        var employeeStart = moment.unix(startDate).format("MM/DD/YYYY");
+
+        var employeeMonths = moment().diff(moment(startDate, "X"), "months");
         var empBilled = employeeMonths * monthlyRate;
 
-        $("#employeeInfo").append("<tr><td>" + employeeName + "</td><td>" + role + "</td><td>" + date + "</td><td>" + employeeMonths + "</td><td>" + monthlyRate + "</td><td>" + empBilled + "</td></tr>");
+        $("#employeeInfo").append("<tr><td>" + employeeName + "</td><td>" + role + "</td><td>" + employeeStart + "</td><td>" + employeeMonths + "</td><td>" + monthlyRate + "</td><td>" + empBilled + "</td></tr>");
         }, function(errorObject){
             console.log("Errors handled: " + errorObject.code);
         });
