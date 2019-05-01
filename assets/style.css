@@ -9,7 +9,11 @@ body {
     width: 80%;
     margin: 0 auto;
 }
+.jumbotron {
+    text-align: center;
+}
 
 #submitBtn {
     margin-bottom: 20px;
+    background-color: #5b6F55
 }
